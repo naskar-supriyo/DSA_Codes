@@ -23,12 +23,40 @@ vector<int> pairSum(vector<int> nums, int target)
     return ans;
 }
 
+// Pair Sum using optimal method
+vector<int> pairSumOpt(vector<int> nums, int target)
+{
+    vector<int> ans;
+    int n = nums.size();
+
+    int i = 0, j = n - 1;
+    while (i <= j)
+    {
+        int ps = nums[i] + nums[j];
+        if (ps > target)
+        {
+            j--;
+        }
+        else if (ps < target)
+        {
+            i++;
+        }
+        else
+        {
+            ans.push_back(i);
+            ans.push_back(j);
+            return ans;
+        }
+    }
+    return ans;
+}
+
 int main()
 {
     vector<int> nums = {2, 7, 11, 15};
-    int target = 13;
+    int target = 27;
 
-    vector<int> ans = pairSum(nums, target);
+    vector<int> ans = pairSumOpt(nums, target);
     cout << ans[0] << ", " << ans[1];
 
     return 0;
